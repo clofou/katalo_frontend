@@ -1,0 +1,21 @@
+<svg
+              className="absolute inset-0 w-full h-full"
+              viewBox="0 0 400 400"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              style={{ pointerEvents: "none" }}
+            >
+              <defs>
+                <radialGradient id="crystal" cx="50%" cy="50%" r="70%">
+                  <stop offset="0%" stopColor="#fff" />
+                  <stop offset="50%" stopColor="#fffbe9" />
+                  <stop offset="80%" stopColor="#fde68a" />
+                  <stop offset="100%" stopColor="#fde68a" />
+                </radialGradient>
+              </defs>
+              <polygon
+                points="200,40 340,120 370,270 200,380 30,270 60,120"
+                fill="url(#crystal)"
+                opacity="0.95"
+              />
+            </svg>

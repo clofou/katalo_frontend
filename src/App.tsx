@@ -1,35 +1,55 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import {
+  createBrowserRouter,
+  RouterProvider,
+  useLocation,
+} from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
+import "./App.css";
+import HomePage from "./pages/Website/Home";
+import PolitiquePage from "./pages/Website/Politique";
+import InscriptionPage from "./pages/Website/Inscription";
+import ForgotPasswordPage from "./pages/Website/ForgotPassword";
+import VerificationPage from "./pages/Website/VerificationPage";
+import ChangePasswordPage from "./pages/Website/ChangePassword";
+import ConnexionPage from "./pages/Website/Connexion";
+import type { JSX } from "react";
+import { DashboardPage } from "./pages/Dashboard/DasboardPage";
 
-function App() {
-  const [count, setCount] = useState(0)
+function AnimatedRoutes() {
+  const location = useLocation();
+
+  const routes: Record<string, JSX.Element> = {
+    "/": <HomePage />,
+    "/connexion": <ConnexionPage />,
+    "/inscription": <InscriptionPage />,
+    "/forgot": <ForgotPasswordPage />,
+    "/verification": <VerificationPage />,
+    "/change-password": <ChangePasswordPage />,
+    "/politique": <PolitiquePage />,
+
+    /** Dashboard Routes */
+    "/dashboard": <DashboardPage />
+
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <AnimatePresence mode="wait">
+      <div key={location.pathname}>
+        {routes[location.pathname as string] || <HomePage />}
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </AnimatePresence>
+  );
 }
 
-export default App
+function App() {
+  const router = createBrowserRouter([
+    {
+      path: "*",
+      element: <AnimatedRoutes />,
+    },
+  ]);
+
+  return <RouterProvider router={router} />;
+}
+
+export default App;

@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+/*import { useEffect } from "react";
 import {
   Dialog,
   DialogContent,
@@ -146,3 +146,4 @@ export function OrderDetailsPanel({ open, onClose, order, onDeliver }: Props) {
     </Dialog>
   );
 }
+*/
